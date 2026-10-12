@@ -1,7 +1,8 @@
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 export const getAuth = () => JSON.parse(localStorage.getItem('auth') || 'null');
 export async function api(path, method = 'GET', body) {
   const a = getAuth();
-  const res = await fetch('/api' + path, { method, headers: { 'Content-Type': 'application/json', ...(a && { Authorization: 'Bearer ' + a.token }) }, body: body && JSON.stringify(body) });
+  const res = await fetch(API_URL + path, { method, headers: { 'Content-Type': 'application/json', ...(a && { Authorization: 'Bearer ' + a.token }) }, body: body && JSON.stringify(body) });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.message || 'Something went wrong.');
   return data;
