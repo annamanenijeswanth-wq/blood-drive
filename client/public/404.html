@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>Community Blood Drive</title><script>
+// Serve deep links (e.g. /blood-drive/campaigns) that GitHub Pages cannot resolve
+// statically: remember the route, then reload the app root so React Router can handle it.
+(function () {
+  var base = '/blood-drive';
+  var loc = window.location;
+  if (loc.pathname.indexOf(base) === 0) {
+    var route = loc.pathname.slice(base.length) || '/';
+    try { sessionStorage.setItem('redirect', route + loc.search + loc.hash); } catch (e) {}
+    loc.replace(base + '/');
+  }
+})();
+</script></head><body></body></html>
